@@ -44,13 +44,13 @@
   }
 
   function getWizardX(width) {
-    if (typeof(width)=='number') return width / 2 - getWizardHeight() / 2;
-    else consol.log ('тип входного параметра width-'+typeof(width));
+    if (isFinite(width)) return width / 2 - wizardWidth / 2;
+    else consol.log ('тип входного параметра width'+typeof(width));
   }
 
   function getWizardY(height) {
-    if (typeof(height)=='number') return height / 3;
-    else consol.log ('тип входного параметра height-'+typeof(height));
+    if (isFinite(height)) return height / 3;
+    else consol.log ('тип входного параметра height'+typeof(height));
   }
 
 </script>
