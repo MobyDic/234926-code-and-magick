@@ -1,4 +1,4 @@
-function renderStatistics(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
   ctx.fillRect (110, 20, 420, 270);
@@ -22,22 +22,27 @@ function renderStatistics(ctx, names, times) {
   var histoX = 140;
   var step = histoHeight / max;
   var columnIndent = 90;
+  var width = 40;
+  function columnLabel(name, x, y) {
+    ctx.fillText(name, x, y);  
+  }
 
   for (var i = 0; i < times.length; i++) {
 
     var name = names[i];
     var time = times[i];
     var height = step * time;
-    var colorRandom = (Math.random() * 256).toFixed(0);
+    var saturationRandom = (Math.random() * 100).toFixed(0);
+    var columnX = histoX + columnIndent * i;
+    var columnY = 240 - height;
+    var topLabelY = 230 - height;
+    var bottomLabelY = 120 + histoHeight;
 
     if (name == "Вы") ctx.fillStyle = "rgba(255, 0, 0, 1)";
-    else ctx.fillStyle = "rgba(" + colorRandom + ", 0, 256, 1)";
+    else ctx.fillStyle =  "hsl(240, " + saturationRandom +"%, 50%)";
 
-    ctx.fillText(time.toFixed(0), histoX + columnIndent * i, 230-height);
-
-    ctx.fillRect(histoX + columnIndent * i, 240-height, 40, height);
-    ctx.fillText(name, histoX + columnIndent * i, 100 + histoHeight + 20);
-  }
+    columnLabel(time.toFixed(0), columnX, topLabelY);
+    ctx.fillRect(columnX, columnY, width, height);
+    columnLabel(name, columnX, bottomLabelY);
+  }  
 }
-
-
