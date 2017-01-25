@@ -1,15 +1,15 @@
 window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-  ctx.fillRect (110, 20, 420, 270);
+  printRectangle(ctx, 110, 20, 420, 270);
 
   ctx.fillStyle = "rgba(256, 256, 256, 1)";
-  ctx.fillRect (100, 10, 420, 270);
+  printRectangle(ctx, 100, 10, 420, 270);
 
   ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
-  ctx.fillText('Ура вы победили!', 120, 40);
-  ctx.fillText('Список результатов', 120, 60);
+  printText(ctx, 'Ура вы победили!', 120, 40);
+  printText(ctx, 'Список результатов', 120, 60);
 
   var max = -1;
 
@@ -23,9 +23,6 @@ window.renderStatistics = function (ctx, names, times) {
   var step = histoHeight / max;
   var columnIndent = 90;
   var width = 40;
-  function columnLabel(name, x, y) {
-    ctx.fillText(name, x, y);  
-  }
 
   for (var i = 0; i < times.length; i++) {
 
@@ -38,11 +35,18 @@ window.renderStatistics = function (ctx, names, times) {
     var topLabelY = 230 - height;
     var bottomLabelY = 120 + histoHeight;
 
-    if (name == "Вы") ctx.fillStyle = "rgba(255, 0, 0, 1)";
-    else ctx.fillStyle =  "hsl(240, " + saturationRandom +"%, 50%)";
+    ctx.fillStyle = (name == "Вы") ? "rgba(255, 0, 0, 1)" : "hsl(240, " + saturationRandom +"%, 50%)";
 
-    columnLabel(time.toFixed(0), columnX, topLabelY);
-    ctx.fillRect(columnX, columnY, width, height);
-    columnLabel(name, columnX, bottomLabelY);
-  }  
+    printText(ctx, time.toFixed(0), columnX, topLabelY);
+    printRectangle(ctx, columnX, columnY, width, height);
+    printText(ctx, name, columnX, bottomLabelY);
+  }
+}
+
+function printText(ctx, name, x, y) {
+  ctx.fillText(name, x, y);
+}
+
+function printRectangle(ctx, x, y, width, height) {
+  ctx.fillRect(x, y, width, height);
 }
