@@ -31,10 +31,9 @@ wizardEyes.addEventListener('click',function() {
 });
 
 fireball.addEventListener('click',function() {
-    fireball.style.background = randomColor(eyesColor)s;
+    fireball.style.background = randomColor(fireballColor);
 });
 
-function randomColor(Arr) {
-  var color = Arr[ Math.floor(Math.random() * Arr.length) ];
-  return color;
+function randomColor(colorArr) {
+  return colorArr[ Math.floor(Math.random() * colorArr.length) ];
 }
