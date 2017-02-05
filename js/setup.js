@@ -11,12 +11,56 @@ var coatColor = ['rgb(101, 137, 164)','rgb(241, 43, 107)','rgb(146, 100, 161)','
 var eyesColor = ['black','red','blue','yellow','green'];
 var fireballColor = ['#ee4830','#30a8ee','#5ce6c0','#e848d5','#e6e848'];
 
+var ENTER_KEY_CODE = 13;
+var ESCAPE_KEY_CODE = 27;
+
+function toggleButton(element) {
+  // Check to see if the button is pressed
+  var pressed = (element.getAttribute("aria-pressed") === "true");
+  // Change aria-pressed to the opposite state
+  element.setAttribute("aria-pressed", !pressed);
+}
+
+var isActivateEvent = function(evt) {
+  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
+};
+
+var setupKeydownHandler = function(evt) {
+  if (evt.keyCode === ESCAPE_KEY_CODE){
+    overlay.classList.add('invisible');
+  }
+};
+
+var showSetupElement = function() {
+  overlay.classList.remove('invisible');
+  document.addEventListener('keydown', setupKeydownHandler);
+};
+
+var hideSetupElement = function() {
+  overlay.classList.add('invisible');
+  document.removeEventListener('keydown', setupKeydownHandler);
+};
+
+setupOpen.addEventListener('keydown', function(evt) {
+  if (isActivateEvent(evt)){
+    showSetupElement();
+  }
+});
+
+setupClose.addEventListener('keydown', function(evt) {
+  if (isActivateEvent(evt)) {
+    hideSetupElement();
+  }
+});
+
 setupOpen.addEventListener('click', function() {
-    overlay.classList.remove('invisible');
+  showSetupElement();
+  toggleButton(setupOpen);
 });
 
 setupClose.addEventListener('click', function() {
-    overlay.classList.add('invisible');
+  hideSetupElement();
+  toggleButton(setupClose);
 });
 
 nameField.required = true;
