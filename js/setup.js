@@ -66,17 +66,21 @@ setupClose.addEventListener('click', function() {
 nameField.required = true;
 nameField.maxLength = 50;
 
-wizardCoat.addEventListener('click',function() {
-    wizardCoat.style.fill = randomColor(coatColor);
-});
+window.colorizeElement(wizardCoat, coatColor, 'fill');
+window.colorizeElement(wizardEyes, eyesColor, 'fill');
+window.colorizeElement(fireball, fireballColor, 'background');
 
-wizardEyes.addEventListener('click',function() {
-    wizardEyes.style.fill = randomColor(eyesColor);
-});
+// wizardCoat.addEventListener('click',function() {
+//   wizardCoat.style.fill = randomColor(coatColor);
+// });
 
-fireball.addEventListener('click',function() {
-    fireball.style.background = randomColor(fireballColor);
-});
+// wizardEyes.addEventListener('click',function() {
+//     wizardEyes.style.fill = randomColor(eyesColor);
+// });
+
+// fireball.addEventListener('click',function() {
+//     fireball.style.background = randomColor(fireballColor);
+// });
 
 function randomColor(colorArr) {
   return colorArr[ Math.floor(Math.random() * colorArr.length) ];
