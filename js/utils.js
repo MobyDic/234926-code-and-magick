@@ -2,15 +2,15 @@
 
 window.utils = {
 
-  getRandomElement:  function(colorArr) {
+  getRandomElement: function (colorArr) {
     var randomElementIndex = Math.floor(Math.random() * colorArr.length);
-    return colorArr[ randomElementIndex ];
+    return colorArr[randomElementIndex];
   },
 
-  getRandomElementExcept: function(colorArr, colorArrElement) {
+  getRandomElementExcept: function (colorArr, colorArrElement) {
     var newColor = colorArrElement;
     while (newColor === colorArrElement) {
-      newColor = this.getRandomElement (colorArr);
+      newColor = this.getRandomElement(colorArr);
     }
     return newColor;
   }
